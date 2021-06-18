@@ -1,0 +1,33 @@
+.navbar{
+    background: #0084FF
+}
+.nav-wrapper{
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.brand-logo{
+    font-size: 2rem;
+    text-decoration: none;
+    color: white;
+}
+
+.nav-list{
+    list-style: none;
+}
+.nav-list>*{
+    padding: 1rem 0;
+    transition: background 0.2s;
+}
+.nav-list>*:hover{
+    background: #205796
+}
+
+.nav-list-item{
+    color:white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: 1rem;
+}
