@@ -9,49 +9,19 @@ import './characterPage.css';
 
 const CharacterPage: React.FC = () => {
 
+    // получение id из url
     const { id } = useParams<any>();
+
+    //хук для доступа к dispatch
     const dispatch = useDispatch();
 
+    // загрузка персонажей
     useEffect(() => {
         dispatch(fetchCharacter(id));
     }, [id]);
 
-
+    // получение стейта из redux
     const { loading, error, character } = useTypedSelector(state => state.character);
-
-
-    type EpisodesProps = {
-        links: string[];
-    };
-
-    const Episodes: React.FC<EpisodesProps> = ({ links }) => {
-        const dispatch = useDispatch();
-        useEffect(() => {
-            dispatch(fetchEpisodes(links));
-        }, []);
-        const { loading, error, episodes } = useTypedSelector(state => state.episodes);
-        if (loading) {
-            return (<h1>Загрузка</h1>);
-        }
-        else if (error) {
-            return (
-                <h1>{error}</h1>
-            );
-        }
-        return (
-            <div className="character-episodes-block">
-                {
-                    episodes.map(
-                        (episode: any, index: number) =>
-                            <Link key={index} to={`/episode_${episode['id']}`} style={{ display: 'block' }} className='episode-name'>{episode['name']}</Link>
-                    )
-                }
-            </div>
-        );
-    };
-
-
-
 
     if (loading) {
         return (<h1>Загрузка</h1>);
@@ -88,5 +58,41 @@ const CharacterPage: React.FC = () => {
     );
 };
 
+// тип принимаемых компонентом значений
+type EpisodesProps = {
+    links: string[];
+};
+
+// компонент принимает ссылки на эпизоды
+const Episodes: React.FC<EpisodesProps> = ({ links }) => {
+    const dispatch = useDispatch();
+
+    // загрузка эпизодов
+    useEffect(() => {
+        dispatch(fetchEpisodes(links));
+    }, []);
+
+    // получение стейта из redux
+    const { loading, error, episodes } = useTypedSelector(state => state.episodes);
+
+    if (loading) {
+        return (<h1>Загрузка</h1>);
+    }
+    else if (error) {
+        return (
+            <h1>{error}</h1>
+        );
+    }
+    return (
+        <div className="character-episodes-block">
+            {
+                episodes.map(
+                    (episode: any, index: number) =>
+                        <Link key={index} to={`/episode_${episode['id']}`} style={{ display: 'block' }} className='episode-name'>{episode['name']}</Link>
+                )
+            }
+        </div>
+    );
+};
 
 export default CharacterPage;

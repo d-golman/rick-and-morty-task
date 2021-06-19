@@ -22,7 +22,8 @@ const App: React.FC = () => {
 
 export default App;
 
-function NoMatch() {
+// компонент для 404 ошибки
+const NoMatch: React.FC = () => {
     let location = useLocation();
 
     return (
@@ -30,7 +31,7 @@ function NoMatch() {
             <h1>Ошибка 404</h1>
             <h3>
                 Путь <code>{location.pathname}</code> не найден
-        </h3>
+            </h3>
             <Link to={'/'}>Вернуться на главную</Link>
         </div>
     );

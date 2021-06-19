@@ -9,19 +9,19 @@ import { Link } from 'react-router-dom';
 
 const EpisodePage: React.FC = () => {
 
+    // получение id из url
     const { id } = useParams<any>();
+
+    //хук для доступа к dispatch
     const dispatch = useDispatch();
 
+    // загрузка эпизодов
     useEffect(() => {
         dispatch(fetchEpisode(id));
     }, [id]);
 
+    // получение стейта из redux
     const { loading, error, episode } = useTypedSelector(state => state.episode);
-
-
-
-
-
 
     if (loading) {
         return (<h1>Загрузка</h1>);
@@ -48,18 +48,23 @@ const EpisodePage: React.FC = () => {
     );
 };
 
+// тип принимаемых компонентом значений
 type CharactersType = {
     charactersList: string[];
 };
 
+// компонент принимает список персонажей
 const Characters: React.FC<CharactersType> = ({ charactersList }) => {
     const dispatch = useDispatch();
 
+    // загрузка персонажей
     useEffect(() => {
         dispatch(fetchCharacters(charactersList));
     }, []);
 
+    // получение стейта из redux
     const { loading, error, characters } = useTypedSelector(state => state.characters);
+
     if (loading) {
         return (<h1>Загрузка</h1>);
     }

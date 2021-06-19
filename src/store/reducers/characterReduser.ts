@@ -1,6 +1,7 @@
 
 import { CharacterAction, EnumCharacterActions, CharacterState } from '../../types/types';
 
+// начальное состояние стейта
 const initialState: CharacterState = {
     character: null,
     loading: false,

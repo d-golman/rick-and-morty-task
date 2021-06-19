@@ -4,6 +4,7 @@ import { episodesReduser } from './reducers/episodesReduser';
 import { characterReduser } from './reducers/characterReduser';
 import { charactersReduser } from './reducers/charactersReduser';
 
+// создание хранилища redux со всеми редьюсерами
 export const store = configureStore({
     reducer:
     {
@@ -14,4 +15,5 @@ export const store = configureStore({
     }
 });
 
+// тип для создания кастомного хука получения стейта с типизацией
 export type RootState = ReturnType<typeof store.getState>;
