@@ -84,3 +84,33 @@ interface FetchCharactersErrorAction {
 }
 
 export type CharactersAction = FetchCharactersAction | FetchCharactersSuccessAction | FetchCharactersErrorAction;
+
+
+//single character types
+
+export interface CharacterState {
+    character: any,
+    loading: boolean,
+    error: null | string;
+}
+
+export enum EnumCharacterActions {
+    FETCH_CHARACTER = 'FETCH_CHARACTER',
+    FETCH_CHARACTER_SUCCESS = 'FETCH_CHARACTER_SUCCESS',
+    FETCH_CHARACTER_ERROR = 'FETCH_CHARACTER_ERROR'
+}
+
+interface FetchCharacterAction {
+    type: EnumCharacterActions.FETCH_CHARACTER;
+}
+
+interface FetchCharacterSuccessAction {
+    type: EnumCharacterActions.FETCH_CHARACTER_SUCCESS,
+    payload: any[];
+}
+interface FetchCharacterErrorAction {
+    type: EnumCharacterActions.FETCH_CHARACTER_ERROR,
+    payload: string;
+}
+
+export type CharacterAction = FetchCharacterAction | FetchCharacterSuccessAction | FetchCharacterErrorAction;

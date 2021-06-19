@@ -12,3 +12,8 @@ body{
     max-width: 1300px;
     margin: auto;
 }
+
+.error{
+    text-align: center;
+    margin: 10% auto;
+}

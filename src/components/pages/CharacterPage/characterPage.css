@@ -1,0 +1,27 @@
+.charactaer-page{
+    padding: 10%;
+}
+
+.character-episodes h2{
+    padding: 10px;
+    font-weight: 500;
+}
+.character-episodes-block{
+    padding: 10px;
+}
+.character-episodes-block a{
+    text-decoration: none;
+}
+.character-page-image{
+    height: 300px;
+}
+.character-page-image:hover{
+    box-shadow: none
+}
+.character-page-info{
+    font-size: 1.8rem;
+}
+.character-page-info>.character-name{
+    font-size: 2.2rem;
+    padding-bottom: 10px;
+}

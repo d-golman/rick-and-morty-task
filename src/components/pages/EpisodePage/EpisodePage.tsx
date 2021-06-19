@@ -3,6 +3,9 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { fetchEpisode } from '../../../store/action-creators/episodeActions';
+import { fetchCharacters } from '../../../store/action-creators/charactersActions';
+import './episodePage.css';
+import { Link } from 'react-router-dom';
 
 const EpisodePage: React.FC = () => {
 
@@ -11,9 +14,15 @@ const EpisodePage: React.FC = () => {
 
     useEffect(() => {
         dispatch(fetchEpisode(id));
-    }, []);
+    }, [id]);
 
     const { loading, error, episode } = useTypedSelector(state => state.episode);
+
+    useEffect(() => {
+        dispatch(fetchCharacters(episode['characters']));
+    }, [episode]);
+
+    const characters = useTypedSelector(state => state.characters.characters);
 
     if (loading) {
         return (<h1>Загрузка</h1>);
@@ -28,14 +37,26 @@ const EpisodePage: React.FC = () => {
         <div className="container">
             <div className="episode-block">
 
-                <h1>{episode['name']}</h1>
-                <p>{episode['air_date']}</p>
-                <p>{episode['episode']}</p>
+                <h1 className='episode-block-name'>{episode['name']}</h1>
+                <p className='episode-block-info'>Season: {episode['episode'] && episode['episode'].slice(2, 3)}</p>
+                <p className='episode-block-info'>Episode: {episode['episode'] && episode['episode'].slice(4, 6)}</p>
+                <p className='episode-block-info'>Release date: {episode['air_date']}</p>
             </div>
 
+            <h2 className='characters-block-title'>Active characters</h2>
             <div className="characters-block">
-                {episode['characters'] && episode['characters'].map((character: string, index: number) => (
-                    <p key={index}>{character}</p>
+                {characters && characters.map((character: any, index: number) => (
+                    <div key={index} className="character-card">
+                        <Link to={`/character_${character['id']}`}><img className='charactar-image' src={character['image']} alt="" /></Link>
+                        <div className="character-card-info">
+                            <p className='character-name' key={index}>{character['name']}</p>
+                            <p className="character-info">Race: {character['species']}</p>
+                            <p className="character-info">Gender: {character['gender']}</p>
+                            <p className="character-info">Origin: {character['origin']['name']}</p>
+                            <p className="character-info">Location: {character['location']['name']}</p>
+                            <p className="character-info">Status: {character['status']}</p>
+                        </div>
+                    </div>
                 ))}
             </div>
         </div>

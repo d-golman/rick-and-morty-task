@@ -3,6 +3,7 @@ import MainPage from './pages/MainPage/MainPage';
 import Navbar from './navbar/Navbar';
 import { BrowserRouter as Router, Switch, Route, Link, useLocation } from 'react-router-dom';
 import EpisodePage from './pages/EpisodePage/EpisodePage';
+import CharacterPage from './pages/CharacterPage/CharacterPage';
 
 
 const App: React.FC = () => {
@@ -11,7 +12,8 @@ const App: React.FC = () => {
             <Navbar />
             <Switch>
                 <Route exact path='/' component={MainPage}></Route>
-                <Route exact path='/:id' component={EpisodePage}></Route>
+                <Route exact path='/episode_:id' component={EpisodePage}></Route>
+                <Route exact path='/character_:id' component={CharacterPage}></Route>
                 <Route exact path='*' component={NoMatch}></Route>
             </Switch>
         </Router>

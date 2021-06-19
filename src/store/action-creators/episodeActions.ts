@@ -18,7 +18,7 @@ export const fetchEpisode = (id: number) => {
                     })
                 )
                 .catch((e) => {
-                    console.log('x');
+                    console.log(e);
                     dispatch({
                         type: EnumEpisodeActions.FETCH_EPISODE_ERROR,
                         payload: 'Error happend on episode loading'

@@ -42,7 +42,7 @@ const EpisodesList: React.FC = () => {
                                 <h4 className='season-name'>Season {season}</h4>
                                 {
                                     episodes.filter(episode => episode['episode'].includes(`S0${season}`) && episode['name'].toLowerCase().includes(search.toLowerCase())).map(episode =>
-                                        <Link to={`/${episode['id']}`} className='episode-card' key={episode['episode']}>
+                                        <Link to={`/episode_${episode['id']}`} className='episode-card' key={episode['episode']}>
                                             <h5 className='episode-name'>{episode['name']}</h5>
                                             <p className='episode-number'>Episode: {episode['episode']}</p>
                                             <p className='episode-date'>Release date: {episode['air_date']}</p>
