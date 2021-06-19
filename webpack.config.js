@@ -1,10 +1,14 @@
-const prod = process.env.NODE_ENV === 'production';
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
-    mode: prod ? 'production' : 'development',
+    mode: 'production',
+    performance: {
+        hints: false,
+        maxEntrypointSize: 512000,
+        maxAssetSize: 512000
+    },
     entry: './src/index.tsx',
     output: {
         path: __dirname + '/dist/',
@@ -25,6 +29,11 @@ module.exports = {
             },
         ]
     },
+    optimization: {
+        minimizer: [
+            new CssMinimizerPlugin(),
+        ],
+    },
     devServer: {
         historyApiFallback: true,
         contentBase: './',
@@ -35,5 +44,7 @@ module.exports = {
             template: 'index.html',
         }),
         new MiniCssExtractPlugin(),
+        new CssMinimizerPlugin(),
     ],
 };
+
