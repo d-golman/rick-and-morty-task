@@ -24,7 +24,7 @@ const CharacterPage: React.FC = () => {
     const { loading, error, character } = useTypedSelector(state => state.character);
 
     if (loading) {
-        return (<h1>Загрузка</h1>);
+        return (<h1>Loading</h1>);
     }
     else if (error) {
         return (
@@ -76,7 +76,7 @@ const Episodes: React.FC<EpisodesProps> = ({ links }) => {
     const { loading, error, episodes } = useTypedSelector(state => state.episodes);
 
     if (loading) {
-        return (<h1>Загрузка</h1>);
+        return (<h1>Loading</h1>);
     }
     else if (error) {
         return (
